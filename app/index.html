@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0a1419">
+<title>SeedAI</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+</head>
+<body>
+
+<!-- ===== شاشة البداية ===== -->
+<section id="splash" class="screen active">
+  <div class="splash-content">
+    <div class="splash-logo">🌱</div>
+    <h1 class="splash-title">SeedAI</h1>
+    <p class="splash-sub">بداية لفكرة أقوى</p>
+    <p class="splash-desc">مساعدك الذكي في التفكير، الإبداع،<br>التعلم والعمل اليومي</p>
+    <button class="btn-primary" onclick="go('home')">
+      ابدأ الآن
+      <span>←</span>
+    </button>
+  </div>
+</section>
+
+<!-- ===== الشاشة الرئيسية ===== -->
+<section id="home" class="screen">
+  <header class="topbar">
+    <button class="icon-btn" onclick="toggleMenu()">☰</button>
+    <h2 class="logo-text">Seed<span>AI</span></h2>
+    <button class="icon-btn">🔍</button>
+  </header>
+
+  <div class="home-body">
+    <div class="welcome">
+      <div class="welcome-icon">🌱</div>
+      <h3>مرحبًا بك</h3>
+      <p>كيف يمكنني مساعدتك اليوم؟</p>
+    </div>
+
+    <div class="input-box">
+      <button class="input-icon">＋</button>
+      <input type="text" placeholder="اكتب سؤالك هنا..." id="mainInput">
+      <button class="input-icon">🎤</button>
+      <button class="input-send" onclick="sendMessage()">➤</button>
+    </div>
+
+    <div class="grid-menu">
+      <button class="grid-item" onclick="go('chat')">
+        <div class="grid-icon green">💬</div>
+        <span>محادثة ذكية</span>
+      </button>
+      <button class="grid-item" onclick="go('image')">
+        <div class="grid-icon orange">🖼️</div>
+        <span>إنشاء صور</span>
+      </button>
+      <button class="grid-item">
+        <div class="grid-icon blue">📄</div>
+        <span>كتابة نصوص</span>
+      </button>
+      <button class="grid-item">
+        <div class="grid-icon green">📋</div>
+        <span>تلخيص نصوص</span>
+      </button>
+      <button class="grid-item">
+        <div class="grid-icon blue">🌐</div>
+        <span>ترجمة لغات</span>
+      </button>
+      <button class="grid-item">
+        <div class="grid-icon yellow">💡</div>
+        <span>أفكار إبداعية</span>
+      </button>
+      <button class="grid-item">
+        <div class="grid-icon pink">📁</div>
+        <span>تحليل ملفات</span>
+      </button>
+      <button class="grid-item">
+        <div class="grid-icon green">‹/›</div>
+        <span>برمجة ومساعدة</span>
+      </button>
+      <button class="grid-item">
+        <div class="grid-icon purple">🎵</div>
+        <span>صوت وتحويل</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== شاشة إنشاء صورة ===== -->
+<section id="image" class="screen">
+  <header class="topbar">
+    <button class="icon-btn" onclick="go('home')">→</button>
+    <h2 class="page-title">إنشاء صورة</h2>
+    <button class="icon-btn">⚙️</button>
+  </header>
+
+  <div class="image-body">
+    <div class="prompt-box">
+      <textarea placeholder="صورة لمدينة مستقبلية في الليل بتصميم سينمائي" id="imagePrompt"></textarea>
+      <button class="send-round" onclick="generateImage()">➤</button>
+    </div>
+
+    <div class="style-chips">
+      <button class="chip active">سينمائي</button>
+      <button class="chip">واقعي</button>
+      <button class="chip">أنمي</button>
+      <button class="chip">فني</button>
+    </div>
+
+    <div class="image-preview" id="imagePreview">
+      <div class="preview-placeholder">🌱<br><span>اضغط ➤ لإنشاء صورة</span></div>
+    </div>
+
+    <div class="preview-actions">
+      <button class="action-btn">↗</button>
+      <button class="action-btn">⬇</button>
+      <button class="action-btn">⛶</button>
+    </div>
+
+    <div class="thumbnails">
+      <div class="thumb"></div>
+      <div class="thumb"></div>
+      <div class="thumb"></div>
+      <div class="thumb"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== شاشة الأدوات ===== -->
+<section id="tools" class="screen">
+  <header class="topbar">
+    <button class="icon-btn" onclick="toggleMenu()">☰</button>
+    <h2 class="page-title">الأدوات</h2>
+    <button class="icon-btn">🔍</button>
+  </header>
+
+  <div class="tools-list">
+    <button class="tool-item">
+      <div class="tool-icon green">💬</div>
+      <div class="tool-info">
+        <h4>محادثة ذكية</h4>
+        <p>احصل على إجابات دقيقة وشاملة</p>
+      </div>
+      <span class="arrow">‹</span>
+    </button>
+
+    <button class="tool-item">
+      <div class="tool-icon orange">🖼️</div>
+      <div class="tool-info">
+        <h4>إنشاء صور</h4>
+        <p>صور احترافية من وصف نصي</p>
+      </div>
+      <span class="arrow">‹</span>
+    </button>
+
+    <button class="tool-item">
+      <div class="tool-icon pink">🎬</div>
+      <div class="tool-info">
+        <h4>إنشاء فيديو</h4>
+        <p>تحويل النص إلى فيديو</p>
+      </div>
+      <span class="arrow">‹</span>
+    </button>
+
+    <button class="tool-item">
+      <div class="tool-icon blue">📄</div>
+      <div class="tool-info">
+        <h4>كتابة وتحرير نصوص</h4>
+        <p>مساعدة في الكتابة والمحتوى</p>
+      </div>
+      <span class="arrow">‹</span>
+    </button>
+
+    <button class="tool-item">
+      <div class="tool-icon blue">🌐</div>
+      <div class="tool-info">
+        <h4>ترجمة لغات</h4>
+        <p>ترجمة دقيقة لعدة لغات</p>
+      </div>
+      <span class="arrow">‹</span>
+    </button>
+
+    <button class="tool-item">
+      <div class="tool-icon yellow">💡</div>
+      <div class="tool-info">
+        <h4>أفكار ومشاريع</h4>
+        <p>إلهام وأفكار جديدة</p>
+      </div>
+      <span class="arrow">‹</span>
+    </button>
+
+    <button class="tool-item">
+      <div class="tool-icon green">‹/›</div>
+      <div class="tool-info">
+        <h4>برمجة ومساعدة تقنية</h4>
+        <p>مساعدة في الكود وحل المشاكل</p>
+      </div>
+      <span class="arrow">‹</span>
+    </button>
+
+    <button class="tool-item">
+      <div class="tool-icon purple">🎵</div>
+      <div class="tool-info">
+        <h4>صوت وتحويل</h4>
+        <p>تحويل النص إلى كلام وتحليل الصوت</p>
+      </div>
+      <span class="arrow">‹</span>
+    </button>
+
+    <button class="tool-item">
+      <div class="tool-icon blue">📁</div>
+      <div class="tool-info">
+        <h4>تحليل الملفات</h4>
+        <p>قراءة وتلخيص الملفات</p>
+      </div>
+      <span class="arrow">‹</span>
+    </button>
+  </div>
+</section>
+
+<!-- ===== شاشة المحادثة ===== -->
+<section id="chat" class="screen">
+  <header class="topbar">
+    <button class="icon-btn" onclick="go('home')">→</button>
+    <h2 class="page-title">محادثة ذكية</h2>
+    <button class="icon-btn">⚙️</button>
+  </header>
+
+  <div class="chat-body" id="chatBody">
+    <div class="chat-msg bot">
+      <div class="chat-avatar">🌱</div>
+      <div class="chat-bubble">مرحبًا! أنا SeedAI. كيف أقدر أساعدك؟</div>
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input type="text" id="chatInput" placeholder="اكتب رسالتك...">
+    <button class="send-round" onclick="sendChat()">➤</button>
+  </div>
+</section>
+
+<!-- ===== شريط سفلي ===== -->
+<nav class="bottombar">
+  <button class="nav-item active" data-screen="home" onclick="go('home')">
+    <span class="nav-icon">🏠</span>
+    <span class="nav-label">الرئيسية</span>
+  </button>
+  <button class="nav-item" data-screen="library" onclick="go('home')">
+    <span class="nav-icon">📚</span>
+    <span class="nav-label">المكتبة</span>
+  </button>
+  <button class="nav-item" data-screen="tools" onclick="go('tools')">
+    <span class="nav-icon">✳️</span>
+    <span class="nav-label">الأدوات</span>
+  </button>
+  <button class="nav-item" data-screen="more" onclick="go('home')">
+    <span class="nav-icon">⋯</span>
+    <span class="nav-label">المزيد</span>
+  </button>
+</nav>
+
+<script src="engine.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

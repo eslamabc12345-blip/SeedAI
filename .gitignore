@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+
+# Model files (لا نرفعهم - بيتولّدوا من التدريب)
+*.npz
+*.pkl
+*.h5
+
+# Temp
+.DS_Store
+*.log
+*.tmp
+.vscode/
+.idea/
